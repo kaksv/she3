@@ -5,6 +5,12 @@
     height: 94vh;
 }
 
+/* Add this to your existing sidebar.css */
+.menu--list .item.active {
+    background-color: #062b29;
+    color: #b99cca;
+  }
+
 .logo{
     text-align: center;
     padding: 20px;

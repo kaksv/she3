@@ -1,0 +1,21 @@
+.dashboard {
+  display: flex;
+  gap: 17px;
+
+}
+
+.dashboard--content {
+  background: #fff;
+  flex:1;
+  border-radius: 20px;
+  display: flex;
+  padding: 2rem;
+  gap: 1.5rem;
+  justify-content: space-between; 
+}
+
+.profile {
+  color:#9057af;
+  font-weight: 200;
+}
+

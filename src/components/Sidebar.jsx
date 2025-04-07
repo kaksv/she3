@@ -16,7 +16,7 @@ const Sidebar = () => {
           to="/" 
           className={({ isActive }) => isActive ? "item active" : "item"}
         >
-          Dashboard
+          Home
         </NavLink>
         <NavLink 
           to="/assignments" 

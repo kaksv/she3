@@ -7,8 +7,10 @@
 
 /* Add this to your existing sidebar.css */
 .menu--list .item.active {
-    background-color: #062b29;
-    color: #b99cca;
+    /* background-color: #062b29; */
+    color:#062b29;
+    transform:translateX(14px);
+   
   }
 
 .logo{
@@ -48,8 +50,8 @@
     font-weight: 600 ;
     padding: 10px;
     border-radius: 10px;
-    transition: 0.2s ease-in-out;
-    color:#062b29;
+    transition: 0.2s ease-in;
+    color: #550781;
     /* background-color: aqua; */
 }
 
@@ -57,8 +59,6 @@
     background-color:#062b29;
     color: #b99cca;
 }
-
-
 
 .menu--list .item .icon {
     font-weight: 100;

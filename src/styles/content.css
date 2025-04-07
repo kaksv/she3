@@ -75,19 +75,62 @@ transition: 0.5s ease-in-out;
 /* Card Container */
 .card--container {
     display:flex;
-    gap:26px;
-    align-items:center;
+    flex-direction: column;
+    gap:10px;
     margin-top:2.3rem;
+    /* justify-content:stretch; */
+}
+
+.empower {
+    width:84%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items:right;
+    padding-top: 2.4rem;
+
+}
+
+.empower h1{
+    font-weight:900;
+}
+
+.empower p {
+    line-height:1.4rem; 
+    font-size: 1.12rem;   
+}
+
+.cards--header{
+    margin-top:2.5rem;
+    padding-top:1.3rem;
+    text-align:center;
+}
+
+.Cards {
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    margin-top:1.4rem;
+}
+
+.card--img {
+    width: 150px;
+    height: auto;
+}
+
+.card--text{
+    background: white;
+    height:100%;
+
 }
 
 .card {
     flex: 1;
     background: #c09fff;
-    padding: 20px;
+    padding: 2px;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    flex-direction: column;
     gap: 20px;
     transition: 0.3s ease-in-out;
 
@@ -140,32 +183,48 @@ transition: 0.5s ease-in-out;
 /* Teachers */
 
 .teachers--content{
-margin-top: 1.2rem;
+margin-top: 2.4rem;
+padding-top: 2rem;
+display:flex;
+}
+
+.teachers--content img {
+    width: 50px;
+    height: auto;
+}
+
+.Program--List {
+
 }
 
 .list--header {
     display: flex;
+    flex-direction: column;
     margin: 2rem 0;
-    justify-content:space-between;
+    gap:8px;
+}
+
+.list--text {
+    padding: 10px;
+    width:72%;
+}
+
+.list--text  p {
+    padding-left:1rem;
+    margin-top:0.4rem;    
 }
 
 .list--header h2 {
     color: brown;
 }
 
-.list--header select {
-    border-radius: 10px;
-    /* border:none; */
-    padding: 8px 12px;
-    /* background-color:#e5d6ee; */
-    outline: none;
-    border-radius: 1px solid brown;
-}
-
 .list--container {
     display: flex;
     flex-direction: column;
-    gap:15px;
+    gap:2px;
+    background-color: #9057af;
+    padding: 15px 10px;
+    border-radius:15px;
 }
 
 .list {
@@ -176,27 +235,8 @@ margin-top: 1.2rem;
     padding: 10px 0;
     /* margin:5px; */
     background: #f2f0f7;
-    border-radius: 19px;
+    border-radius:5px;
     transition: 0.3s ease-in-out;
-}
-
-.list:hover {
-    transform : scale(1.027);
-}
-
-.list .teacher--details {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap:1.2rem;
-}
-/* 
-.list .teacher--details img {
-    border-radius: 50px;
-} */
-
-.list {
-
 }
 
 .list--container .list img {

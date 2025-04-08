@@ -1,11 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css?family=Montserrat:wght@200;300;400;500;600;700;900&display=swap");
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat',sans-serif;
-
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 body {
-  background: #d9b6ec;;
-  padding:21px;
+  background: linear-gradient(135deg, #d9b6ec 0%, #c09fff 100%);
+  padding: 21px;
+  min-height: 100vh;
+}
+
+:root {
+  --primary: #9057af;
+  --primary-dark: #6a3b87;
+  --primary-light: #d9b6ec;
+  --accent: #c09fff;
+  --text-dark: #333333;
+  --text-light: #ffffff;
+  --background-light: #f8f5fc;
+  --card-hover: rgba(192, 159, 255, 0.2);
 }

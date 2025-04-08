@@ -1,65 +1,99 @@
-.menu{
-    display:flex;
-    flex-direction: column;
-    gap: 1.7rem;
-    height: 94vh;
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+  height: calc(100vh - 42px);
+  background: var(--background-light);
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  min-width: 250px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Add this to your existing sidebar.css */
 .menu--list .item.active {
-    /* background-color: #062b29; */
-    color:#062b29;
-    transform:translateX(14px);
-   
-  }
+  color: var(--text-light);
+  background-color: var(--primary);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(144, 87, 175, 0.3);
+}
 
-.logo{
-    text-align: center;
-    padding: 20px;
-    color:#062b29;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    gap: 10px;
-
+.logo {
+  text-align: center;
+  padding: 10px 20px 30px;
+  color: var(--primary-dark);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(144, 87, 175, 0.2);
+  margin-bottom: 10px;
 }
 
 .logo h2 {
-    font-weight: 900;
+  font-weight: 900;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, #9057af 0%, #6a3b87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .logo .logo-icon {
-    width:60px;
-    height:auto;
-    border-radius: 10px;
+  width: 50px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .menu--list {
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-}  
-
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 .menu--list .item {
-    display: flex;
-    align-items: center;
-    gap:20px;
-    font-size: 1.1rem;
-    text-decoration: none;
-    font-weight: 600 ;
-    padding: 10px;
-    border-radius: 10px;
-    transition: 0.2s ease-in;
-    color: #550781;
-    /* background-color: aqua; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  color: var(--primary);
+  position: relative;
+  overflow: hidden;
 }
 
 .menu--list .item:hover {
-    background-color:#062b29;
-    color: #b99cca;
+  background-color: var(--card-hover);
+  color: var(--primary-dark);
+  transform: translateX(5px);
 }
 
 .menu--list .item .icon {
-    font-weight: 100;
+  font-weight: 100;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    height: auto;
+    min-width: 100%;
+    padding: 1rem;
+  }
+
+  .logo {
+    padding: 10px;
+  }
+
+  .menu--list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .menu--list .item {
+    white-space: nowrap;
+  }
 }

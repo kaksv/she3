@@ -1,21 +1,35 @@
 .dashboard {
   display: flex;
-  gap: 17px;
-
+  gap: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: calc(100vh - 42px);
 }
 
 .dashboard--content {
-  background: #fff;
-  flex:1;
+  background: var(--background-light);
+  flex: 1;
   border-radius: 20px;
   display: flex;
   padding: 2rem;
   gap: 1.5rem;
-  justify-content: space-between; 
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
 }
 
 .profile {
-  color:#9057af;
+  color: var(--primary);
   font-weight: 200;
 }
 
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dashboard--content {
+    padding: 1.5rem;
+  }
+}

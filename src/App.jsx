@@ -1,14 +1,12 @@
-import React from 'react'
-import Sidebar from './components/Sidebar'
-import Profile from './components/Profile'
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Dashboard from './pages/Dashboard'
-import Assignments from './pages/Assignments'
-import Reports from './pages/Reports'
-import Stats from './pages/Stats'
-import Messages from './pages/Messages'
-import Help from './pages/Help'
+import Sidebar from "./components/Sidebar"
+import "./App.css"
+import { Routes, Route } from "react-router-dom"
+import Dashboard from "./pages/Dashboard"
+import Assignments from "./pages/Assignments"
+import Reports from "./pages/Reports"
+import Stats from "./pages/Stats"
+import Messages from "./pages/Messages"
+import Help from "./pages/Help"
 
 const App = () => {
   return (

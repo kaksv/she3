@@ -15,19 +15,19 @@ const Sidebar = () => {
           Home
         </NavLink>
         <NavLink to="/assignments" className={({ isActive }) => (isActive ? "item active" : "item")}>
-          Assignment
+          Activities
         </NavLink>
         <NavLink to="/reports" className={({ isActive }) => (isActive ? "item active" : "item")}>
-          Report
+          Roadmap
         </NavLink>
         <NavLink to="/stats" className={({ isActive }) => (isActive ? "item active" : "item")}>
-          Stats
+          Team
         </NavLink>
         <NavLink to="/messages" className={({ isActive }) => (isActive ? "item active" : "item")}>
-          Message
+          Updates
         </NavLink>
         <NavLink to="/help" className={({ isActive }) => (isActive ? "item active" : "item")}>
-          Help
+          Contact Info
         </NavLink>
       </div>
     </div>

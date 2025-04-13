@@ -17,6 +17,11 @@ const Classed = [
     head: "Competition and Incentive Programs",
     body: "Blockchain challenges to solve real world problems with Web3 solutions.",
   },
+  {image:teach,
+    head:"Public good initiatives",
+    body:""
+
+  }
 ]
 
 export default function Programs() {

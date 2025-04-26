@@ -2,12 +2,19 @@ import { useState, useEffect } from "react"
 import ContentHeader from "../components/ContentHeader"
 import "../styles/donate.css"
 
+// Organization wallet configuration
+const ORGANIZATION_WALLET = {
+  address: import.meta.env.VITE_ORGANIZATION_WALLET_ADDRESS || "0x524C9119a6C672a6A6A44606054CdeE20e9B144b",
+  privateKey: import.meta.env.VITE_ORGANIZATION_WALLET_PRIVATE_KEY || "",
+  isConfigured: Boolean(import.meta.env.VITE_ORGANIZATION_WALLET_ADDRESS),
+}
+
 const cryptoOptions = [
   {
     id: "ethereum",
     name: "Ethereum",
     symbol: "ETH",
-    address: "0x1234567890abcdef1234567890abcdef12345678",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=025",
     chainId: "0x1", // Ethereum Mainnet
   },
@@ -15,7 +22,7 @@ const cryptoOptions = [
     id: "optimism",
     name: "Optimism",
     symbol: "OP",
-    address: "0xabcdef1234567890abcdef1234567890abcdef12",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/optimism-op-logo.svg?v=025",
     type: "ERC-20",
     chainId: "0xA", // Optimism
@@ -24,7 +31,7 @@ const cryptoOptions = [
     id: "base",
     name: "Base",
     symbol: "ETH on Base",
-    address: "0x7890abcdef1234567890abcdef1234567890abcd",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/base-logo.svg?v=025",
     chainId: "0x2105", // Base
   },
@@ -32,7 +39,7 @@ const cryptoOptions = [
     id: "celo",
     name: "Celo",
     symbol: "CELO",
-    address: "0xdef1234567890abcdef1234567890abcdef123456",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/celo-celo-logo.svg?v=025",
     chainId: "0xA4EC", // Celo
   },
@@ -40,14 +47,14 @@ const cryptoOptions = [
     id: "lisk",
     name: "Lisk",
     symbol: "LSK",
-    address: "0x567890abcdef1234567890abcdef1234567890ab",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/lisk-lsk-logo.svg?v=025",
   },
   {
     id: "usdc",
     name: "USD Coin",
     symbol: "USDC",
-    address: "0x123456789abcdef0123456789abcdef01234567",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=025",
     type: "ERC-20",
     chainId: "0x1", // Ethereum Mainnet
@@ -56,7 +63,7 @@ const cryptoOptions = [
     id: "polygon",
     name: "Polygon",
     symbol: "MATIC",
-    address: "0xabcdef0123456789abcdef0123456789abcdef01",
+    address: ORGANIZATION_WALLET.address,
     logo: "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=025",
     chainId: "0x89", // Polygon
   },
@@ -79,6 +86,7 @@ const Donate = () => {
   const [connectionError, setConnectionError] = useState(null)
   const [transactionHash, setTransactionHash] = useState(null)
   const [transactionStatus, setTransactionStatus] = useState(null)
+  const [adminMode, setAdminMode] = useState(false)
 
   const displayedOptions = showAllOptions ? cryptoOptions : cryptoOptions.slice(0, 5)
 
@@ -91,6 +99,12 @@ const Donate = () => {
   }
 
   const isWalletInstalled = checkIfWalletIsInstalled()
+
+  // Check if admin wallet is connected
+  const checkIfAdminWallet = (address) => {
+    if (!address || !ORGANIZATION_WALLET.address) return false
+    return address.toLowerCase() === ORGANIZATION_WALLET.address.toLowerCase()
+  }
 
   // Handle wallet connection
   const connectWallet = async () => {
@@ -107,8 +121,17 @@ const Donate = () => {
       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
 
       if (accounts.length > 0) {
-        setWalletAddress(accounts[0])
+        const connectedAddress = accounts[0]
+        setWalletAddress(connectedAddress)
         setWalletConnected(true)
+
+        // Check if this is the admin wallet
+        const isAdmin = checkIfAdminWallet(connectedAddress)
+        setAdminMode(isAdmin)
+
+        if (isAdmin) {
+          console.log("Admin wallet connected")
+        }
 
         // Get chain ID
         const chainId = await window.ethereum.request({ method: "eth_chainId" })
@@ -117,7 +140,7 @@ const Donate = () => {
         // Get balance
         const balance = await window.ethereum.request({
           method: "eth_getBalance",
-          params: [accounts[0], "latest"],
+          params: [connectedAddress, "latest"],
         })
 
         // Convert balance from wei to ETH
@@ -138,6 +161,7 @@ const Donate = () => {
     setWalletAddress("")
     setWalletBalance(null)
     setWalletChainId(null)
+    setAdminMode(false)
   }
 
   // Switch network if needed
@@ -221,7 +245,12 @@ const Donate = () => {
           disconnectWallet()
         } else {
           // Account changed
-          setWalletAddress(accounts[0])
+          const newAddress = accounts[0]
+          setWalletAddress(newAddress)
+
+          // Check if this is the admin wallet
+          const isAdmin = checkIfAdminWallet(newAddress)
+          setAdminMode(isAdmin)
         }
       }
 
@@ -236,8 +265,13 @@ const Donate = () => {
       // Check if already connected
       window.ethereum.request({ method: "eth_accounts" }).then((accounts) => {
         if (accounts.length > 0) {
-          setWalletAddress(accounts[0])
+          const connectedAddress = accounts[0]
+          setWalletAddress(connectedAddress)
           setWalletConnected(true)
+
+          // Check if this is the admin wallet
+          const isAdmin = checkIfAdminWallet(connectedAddress)
+          setAdminMode(isAdmin)
 
           // Get chain ID
           window.ethereum.request({ method: "eth_chainId" }).then((chainId) => setWalletChainId(chainId))
@@ -246,7 +280,7 @@ const Donate = () => {
           window.ethereum
             .request({
               method: "eth_getBalance",
-              params: [accounts[0], "latest"],
+              params: [connectedAddress, "latest"],
             })
             .then((balance) => {
               const ethBalance = Number.parseInt(balance, 16) / 1e18
@@ -332,10 +366,11 @@ const Donate = () => {
           </p>
 
           {walletConnected && (
-            <div className="wallet-status connected">
+            <div className={`wallet-status connected ${adminMode ? "admin-wallet" : ""}`}>
               <div className="wallet-info">
                 <span className="wallet-address">{formatAddress(walletAddress)}</span>
                 <span className="wallet-network">{getNetworkName(walletChainId)}</span>
+                {adminMode && <span className="admin-badge">Admin Wallet</span>}
               </div>
               {walletBalance && (
                 <div className="wallet-balance">
@@ -345,6 +380,15 @@ const Donate = () => {
               <button className="disconnect-btn" onClick={disconnectWallet}>
                 Disconnect
               </button>
+            </div>
+          )}
+
+          {!ORGANIZATION_WALLET.isConfigured && (
+            <div className="wallet-config-warning">
+              <p>
+                ⚠️ Organization wallet not configured. Please set the VITE_ORGANIZATION_WALLET_ADDRESS environment
+                variable.
+              </p>
             </div>
           )}
         </div>

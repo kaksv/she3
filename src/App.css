@@ -88,7 +88,10 @@
 
 .footer-copyright {
   width: 100%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(144, 87, 175, 0.2);
@@ -121,5 +124,46 @@
 
   .footer-links {
     gap: 20px;
+  }
+}
+
+/* Footer donation address styles */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+}
+
+.footer-donation-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.footer-donation-address .wallet-address {
+  font-family: monospace;
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-donation-address .wallet-address:hover {
+  text-decoration: underline;
+  color: var(--primary-dark);
+}
+
+.footer-donation-address .heart {
+  color: #ff4d6d;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-copyright {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

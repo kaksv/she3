@@ -70,6 +70,11 @@
   z-index: 1;
 }
 
+.wallet-status.admin-wallet {
+  background: rgba(144, 87, 175, 0.1);
+  border: 1px solid var(--primary);
+}
+
 .wallet-info {
   display: flex;
   flex-direction: column;
@@ -88,6 +93,16 @@
   padding: 2px 8px;
   border-radius: 10px;
   display: inline-block;
+}
+
+.admin-badge {
+  font-size: 0.8rem;
+  color: white;
+  background: var(--primary);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 3px;
 }
 
 .wallet-balance {
@@ -109,6 +124,22 @@
 
 .disconnect-btn:hover {
   background: rgba(144, 87, 175, 0.2);
+}
+
+.wallet-config-warning {
+  margin-top: 15px;
+  background: rgba(255, 165, 0, 0.1);
+  border-left: 3px solid orange;
+  padding: 10px 15px;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.wallet-config-warning p {
+  color: #d97706;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 /* Donation Card */

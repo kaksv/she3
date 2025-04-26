@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="menu">
       <div className="logo">
-        <img className="logo-icon" src={IMG} alt="She3 Logo" />
+        <img className="logo-icon" src={IMG || "/placeholder.svg"} alt="She3 Logo" />
         <h2>She 3 Africa</h2>
       </div>
 
@@ -28,6 +28,12 @@ const Sidebar = () => {
         </NavLink>
         <NavLink to="/help" className={({ isActive }) => (isActive ? "item active" : "item")}>
           Contact Info
+        </NavLink>
+        <NavLink
+          to="/donate"
+          className={({ isActive }) => (isActive ? "item active donate-button" : "item donate-button")}
+        >
+          Donate
         </NavLink>
       </div>
     </div>

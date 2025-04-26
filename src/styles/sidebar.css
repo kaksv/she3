@@ -72,6 +72,26 @@
   transform: translateX(5px);
 }
 
+.menu--list .item.donate-button {
+  background-color: var(--primary);
+  color: var(--text-light);
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(144, 87, 175, 0.3);
+}
+
+.menu--list .item.donate-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px) translateX(5px);
+  box-shadow: 0 6px 15px rgba(144, 87, 175, 0.4);
+}
+
+.menu--list .item.donate-button.active {
+  background-color: var(--accent);
+}
+
 .menu--list .item .icon {
   font-weight: 100;
 }
